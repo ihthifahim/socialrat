@@ -52,7 +52,7 @@ class CampaignTest implements FromQuery, WithHeadings, WithMapping
     public function query()
     {
         return Campaigns::query()
-        ->join('campaignactivities', 'campaignactivities.campaign_id', '=', 'campaigns.campaign_id')
+        ->join('campaignactivities', 'campaignactivities.campaign_id', '=', 'Campaigns.campaign_id')
         ->where('campaignactivities.campaign_id', $this->campaignid);
     }
 

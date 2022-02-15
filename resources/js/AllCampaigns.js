@@ -38,7 +38,7 @@ function AllCampaignsTable(){
                                 <div className="col-12">
                                     <div className="card">
                                             <div className="card-body">
-                                                <table className="table table-striped mb-0">
+                                                <table className="table table-striped mb-0" style={{overflowX : 'scroll', width: '100%'}}>
         
                                                     <thead>
                                                         <tr>

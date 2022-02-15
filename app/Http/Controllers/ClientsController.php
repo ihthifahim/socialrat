@@ -12,13 +12,13 @@ class ClientsController extends Controller
 
     public function allClient(){
         $clients = Clients::all();
-        return view('clients.allclients', [
+        return view('Clients.allclients', [
             'clients' => $clients
         ]);
     }
 
     public function newClient(){
-        return view('clients.newclient');
+        return view('Clients.newclient');
     }
 
     public function createClient(Request $request){
@@ -33,7 +33,7 @@ class ClientsController extends Controller
 
     public function updateClient($id){
         $client = Clients::where('client_id', '=', $id)->first();
-        return view('clients.editclient', [
+        return view('Clients.editclient', [
             'client' => $client
         ]);
     }

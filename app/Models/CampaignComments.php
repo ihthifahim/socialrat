@@ -10,7 +10,7 @@ class CampaignComments extends Model
     use HasFactory;
 
     protected $primary_key = 'comment_id';
-    protected $table = "CampaignComments";
+    protected $table = "campaigncomments";
 
 
 }

@@ -174,6 +174,8 @@
                                                 <a href="/campaign/{{ $activity->campaign_id }}"><button type="button" class="btn btn-primary w-md">Go Back</button></a>
                                             </form>
 
+
+                                            @if(session()->get('user_role') == "1")
                                             
                                                 <form action="/delete-activity" method="post" style="margin-top:-40px">
                                                     @csrf
@@ -181,6 +183,8 @@
                                                     <input type="hidden" name="campaignid" value="{{ $activity->campaign_id }}" />
                                                 <button type="submit" class="btn btn-danger w-md float-end">Delete</button>
                                                 </form>
+
+                                            @endif
                                                 
 
                                                

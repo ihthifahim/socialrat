@@ -29,7 +29,7 @@ Route::get('/signout', [AuthController::class, 'signout']);
 
 Route::group(['middleware' => 'adminauth'], function(){
     Route::get('/', function(){
-        return redirect('/login');
+        return redirect('/dashboard');
     });
     Route::get('/dashboard', function () {
         return view('dashboard');

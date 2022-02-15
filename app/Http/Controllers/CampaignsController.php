@@ -20,7 +20,7 @@ class CampaignsController extends Controller
     //
 
     public function allCampaigns(){
-        return view('campaigns.allcampaigns');
+        return view('Campaigns.allCampaigns');
     }
     public function allCampaignsAPI(){
         $campaigns = Campaigns::orderBy('campaign_id', 'desc')->get();
@@ -28,7 +28,7 @@ class CampaignsController extends Controller
     }
 
     public function createCampaign(){
-        return view('campaigns.newcampaign');
+        return view('Campaigns.newcampaign');
     }
 
     public function newCampaignAPI(Request $request){
@@ -47,21 +47,21 @@ class CampaignsController extends Controller
     }
 
     public function viewCampaign($id){
-        $campaign = Campaigns::where('campaigns.campaign_id', '=', $id)->first();
+        $campaign = Campaigns::where('Campaigns.campaign_id', '=', $id)->first();
         $activities = CampaignActivities::where('campaign_id', '=', $id)->get();
 
         JavaScript::put([
             'campaignid' => $id,
         ]);
                 
-        return view('campaigns.viewCampaign', [
+        return view('Campaigns.viewCampaign', [
             'campaign' => $campaign,
             'activity' => $activities
         ]);
     }
 
     public function viewCampaignAPI($id){
-        $campaign = Campaigns::where('campaigns.campaign_id', '=', $id)->first();
+        $campaign = Campaigns::where('Campaigns.campaign_id', '=', $id)->first();
 
         return response()->json($campaign);
 
@@ -88,13 +88,13 @@ class CampaignsController extends Controller
         $campaign = Campaigns::where('campaign_id', '=', $id)->first();
         
 
-        $comments = Users::rightJoin('campaigncomments', 'campaigncomments.user_id', '=', 'users.user_id')
+        $comments = Users::rightJoin('campaigncomments', 'campaigncomments.user_id', '=', 'Users.user_id')
         ->where('activity_id', '=', $activityid)
         ->orderBy('comment_id', 'desc')
         ->get();
 
         
-        return view('campaigns.activities',[
+        return view('Campaigns.activities',[
             'activity' => $activities,
             'campaign' => $campaign,
             'comments' => $comments
@@ -152,7 +152,7 @@ class CampaignsController extends Controller
 
     public function newActivity($id){
        
-        return view('campaigns.newactivity', [
+        return view('Campaigns.newactivity', [
             'campaignid' => $id
         ]);
     }
@@ -189,10 +189,10 @@ class CampaignsController extends Controller
     }
 
     public function activityOverview(){
-        $activity = CampaignActivities::join('campaigns', 'campaigns.campaign_id', '=', 'campaignactivities.campaign_id')
+        $activity = CampaignActivities::join('Campaigns', 'Campaigns.campaign_id', '=', 'campaignactivities.campaign_id')
         ->orderBy('campaignactivities.activity_id', 'desc')
         ->paginate(100);
-        return view('campaigns.activityoverview', [
+        return view('Campaigns.activityoverview', [
             'activity' => $activity
         ]);
     }

@@ -10,6 +10,6 @@ class CampaignActivities extends Model
     use HasFactory;
 
     protected $primaryKey = 'activity_id';
-    protected $table = "CampaignActivities";
+    protected $table = "campaignactivities";
     
 }

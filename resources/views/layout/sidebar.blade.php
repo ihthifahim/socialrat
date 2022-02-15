@@ -26,26 +26,32 @@
                     </a>
                 </li>
 
+                @if(session()->get('user_role') == "1")
                 <li>
                     <a href="/activity-overview" class="waves-effect">
                         <i class="bx bx-hive"></i>
                         <span key="t-chat">Activity Overview</span>
                     </a>
                 </li>
+                @endif
 
+                @if(session()->get('user_role') == "1")
                 <li>
                     <a href="/clients" class="waves-effect">
                         <i class="bx bx-user-circle"></i>
                         <span key="t-chat">Clients</span>
                     </a>
                 </li>
+                @endif
 
+                @if(session()->get('user_role') == "1")
                 <li>
                     <a href="/users" class="waves-effect">
                         <i class="bx bx-briefcase-alt-2"></i>
                         <span key="t-chat">Users</span>
                     </a>
                 </li>
+                @endif
 
                 
 
