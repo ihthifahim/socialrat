@@ -213,18 +213,31 @@
                                                         @else
 
                                                             @foreach($comments as $comment)
-                                                            <div class="media py-3">
-                                                                <div class="avatar-xs me-3">
-                                                                    <div class="avatar-title rounded-circle bg-light text-primary">
-                                                                        <i class="bx bxs-user"></i>
+
+                                                                <div class="media py-3">
+                                                                    <div class="avatar-xs me-3">
+                                                                        <div class="avatar-title rounded-circle bg-light text-primary">
+                                                                            <i class="bx bxs-user"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="media-body">
+                                                                        <h5 class="font-size-14 mb-1">{{ $comment->firstName }} {{ $comment->lastName }} <small class="text-muted float-end">{{ $comment->created_at->diffForHumans() }}</small></h5>
+                                                                        <p class="text-muted">
+                                                                            @if($comment->review == "1")
+                                                                                @if($comment->review_status == "Completed")
+                                                                                    <span class="badge rounded-pill badge-soft-success font-size-9">Completed</span>
+                                                                                @elseif($comment->review_status == "Need Changes")
+                                                                                    <span class="badge rounded-pill badge-soft-warning font-size-9">Need Changes</span>
+                                                                                @elseif($comment->review_status == "Pending")
+                                                                                    <span class="badge rounded-pill badge-soft-danger font-size-9">Pending</span>
+                                                                                @endif
+
+                                                                            @endif
+                                                                            {{ $comment->comment }}
+                                                                        </p>
+                                                                        
                                                                     </div>
                                                                 </div>
-                                                                <div class="media-body">
-                                                                    <h5 class="font-size-14 mb-1">{{ $comment->firstName }} {{ $comment->lastName }} <small class="text-muted float-end">{{ $comment->created_at->diffForHumans() }}</small></h5>
-                                                                    <p class="text-muted">{{ $comment->comment }}</p>
-                                                                    
-                                                                </div>
-                                                            </div>
                                                             @endforeach
 
                                                         @endif
