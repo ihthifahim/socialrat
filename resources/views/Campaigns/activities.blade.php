@@ -138,7 +138,7 @@
 
                                             <div class="mb-3">
                                                     <label class="form-label" name="notes">Activity Notes</label>
-                                                    <textarea class="form-control" rows="7">{{ $activity->notes }}</textarea>
+                                                    <textarea class="form-control" rows="7" name="notes" >{{ $activity->comments }}</textarea>
                                             </div>
 
                                             <hr>

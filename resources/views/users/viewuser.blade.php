@@ -77,7 +77,7 @@
                                                             <div class="col-md-6">
                                                             <div class="mb-3">
                                                                 <label class="form-label">Password</label>
-                                                                <input class="form-control" type="password" name="password"/>
+                                                                <input class="form-control" type="password" name="password" />
                                                             </div>
                                                             </div>
                                                         </div>

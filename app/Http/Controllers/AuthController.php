@@ -91,10 +91,13 @@ class AuthController extends Controller
             'lastName' => $request->lastname,
             'email' => $request->email,
             'userId' => $request->userlevel,
+            
         ]);
 
+       
         if($request->password != ""){
-            Users::where('user_id', '=', $request->user_id)->update([
+            
+            Users::where('user_id', '=', $request->userid)->update([
                 'password' => Hash::make($request->password)
             ]);
         }

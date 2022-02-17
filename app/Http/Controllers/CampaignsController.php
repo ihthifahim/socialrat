@@ -117,7 +117,7 @@ class CampaignsController extends Controller
             }
             
          }
-
+        
         CampaignActivities::where('activity_id', '=', $request->activityid)->update([
             'ro_number' => $request->ro,
             'activityName' => $request->activityName,
@@ -135,6 +135,7 @@ class CampaignsController extends Controller
             'review_comment' => $request->review_comment, 
          ]);
     
+         
             return redirect('/campaign/'.$request->campaignid)->with('status', 'updated');
 
     }
