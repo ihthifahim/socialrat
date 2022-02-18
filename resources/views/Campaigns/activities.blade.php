@@ -234,9 +234,13 @@
 
                                                                             @endif
                                                                             {{ $comment->comment }}
+                                                                            <br/>
+                                                                            
+                                                                            <a href="/delete-comment/{{ $comment->comment_id }}"><span class="bx bx-trash-alt "></span></a>
                                                                         </p>
                                                                         
                                                                     </div>
+
                                                                 </div>
                                                             @endforeach
 

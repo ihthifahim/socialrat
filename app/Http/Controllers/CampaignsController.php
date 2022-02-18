@@ -49,6 +49,7 @@ class CampaignsController extends Controller
     public function viewCampaign($id){
         $campaign = Campaigns::where('Campaigns.campaign_id', '=', $id)->first();
         $activities = CampaignActivities::where('campaign_id', '=', $id)->get();
+        $campaignBudgetUSD = CampaignActivities::where('campaign_id', '=', $id)->sum('budgetUSD');
 
         JavaScript::put([
             'campaignid' => $id,
@@ -56,6 +57,7 @@ class CampaignsController extends Controller
                 
         return view('Campaigns.viewCampaign', [
             'campaign' => $campaign,
+            'campaignUSD' => $campaignBudgetUSD,
             'activity' => $activities
         ]);
     }
@@ -196,5 +198,12 @@ class CampaignsController extends Controller
         return view('Campaigns.activityoverview', [
             'activity' => $activity
         ]);
+    }
+
+    public function deleteComment($id){
+        $campaignId = CampaignComments::where('comment_id', '=', $id)->first();
+        CampaignComments::where('comment_id', '=', $id)->delete();
+        return redirect('/campaign/'.$campaignId->campaign_id.'/'.$campaignId->activity_id);
+
     }
 }

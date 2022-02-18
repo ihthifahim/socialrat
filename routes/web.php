@@ -63,6 +63,7 @@ route::post('/activity/comment', [CampaignsController::class, 'addCommentActivit
 route::post('/new-activity', [CampaignsController::class, 'newActivityPost']);
 
 route::post('/delete-activity', [CampaignsController::class, 'deleteActivity']);
+route::get('/delete-comment/{id}', [CampaignsController::class, 'deleteComment']);
 
 /*============================================================================
 ==================== USERS ===============================================

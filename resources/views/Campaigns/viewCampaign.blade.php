@@ -127,7 +127,29 @@
                             <!-- end col -->
 
                             <div class="col-lg-4">
-                                
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card mini-stats-wid card bg-info text-white-50" >
+                                            <div class="card-body">
+                                                <div class="media">
+                                                    <div class="media-body">
+                                                        <p class="" style="color:white">Total Campaign Budget $USD</p>
+                                                        <h4 class="mb-0" style="color:white">{{ $campaignUSD }}</h4>
+                                                    </div>
+
+                                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                                        <span class="avatar-title">
+                                                            <i class="bx bx-dollar-circle  font-size-24"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                               
+
                             </div>
                             <!-- end col -->
                         </div>
