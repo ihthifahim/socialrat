@@ -64,6 +64,6 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT). -->
 
 
-##SOCIALRAT
+## SOCIALRAT
 
 Socialrat is an internal campaign tracking system for the performance team to easily manage the campaigns from the social media account managers.
