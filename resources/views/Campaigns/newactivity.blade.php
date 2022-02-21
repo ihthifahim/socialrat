@@ -51,9 +51,11 @@
                                                     <select name="platform" class="form-select">
                                                     <option value="none">Choose...</option>
                                                     <option value="Facebook">Facebook</option>
+                                                    <option value="Facebook & Instagram">Facebook & Instagram</option>
                                                     <option  value="Instagram">Instagram</option>
                                                     <option  value="Youtube">Youtube</option>
                                                     <option value="Google">Google</option>
+                                                    <option value="Xaxis">Xaxis</option>
                                                     <option value="Twitter">Twitter</option>
                                                     <option value="Linkedin">Linkedin</option>
                                                     

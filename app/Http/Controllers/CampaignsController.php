@@ -9,6 +9,7 @@ use App\Models\CampaignActivities;
 use App\Models\CampaignComments;
 use App\Models\Clients;
 use App\Models\Users;
+use App\Models\CampaignRO;
 
 use App\Exports\CampaignTest;
 use Maatwebsite\Excel\Facades\Excel;
@@ -49,7 +50,9 @@ class CampaignsController extends Controller
     public function viewCampaign($id){
         $campaign = Campaigns::where('Campaigns.campaign_id', '=', $id)->first();
         $activities = CampaignActivities::where('campaign_id', '=', $id)->get();
-        $campaignBudgetUSD = CampaignActivities::where('campaign_id', '=', $id)->sum('budgetUSD');
+        $ro = CampaignRO::where('campaign_id', '=', $id)->get();
+        $campaignUtilizedBudgetUSD = CampaignActivities::where('campaign_id', '=', $id)->sum('budgetUSD');
+        $campaignBudgetUSD = CampaignRO::where('campaign_id', '=', $id)->sum('usd_value');
 
         JavaScript::put([
             'campaignid' => $id,
@@ -57,8 +60,10 @@ class CampaignsController extends Controller
                 
         return view('Campaigns.viewCampaign', [
             'campaign' => $campaign,
-            'campaignUSD' => $campaignBudgetUSD,
-            'activity' => $activities
+            'campaignUSD' => $campaignUtilizedBudgetUSD,
+            'campaignBudgetUSD' => $campaignBudgetUSD,
+            'activity' => $activities,
+            'ro' => $ro
         ]);
     }
 
@@ -205,5 +210,18 @@ class CampaignsController extends Controller
         CampaignComments::where('comment_id', '=', $id)->delete();
         return redirect('/campaign/'.$campaignId->campaign_id.'/'.$campaignId->activity_id);
 
+    }
+
+    public function addROPost(Request $request){
+        $ro = New CampaignRO;
+        $ro->ro_number = $request->ronumber;
+        $ro->campaign_id = $request->campaign_id;
+        $ro->usd_value = $request->usdvalue;
+        $ro->lkr_value = $request->lkrvalue;
+        $ro->platform = $request->platform;
+        $ro->user_id = session()->get('user_id');
+        $ro->save();
+
+        return redirect('/campaign/'.$request->campaign_id);
     }
 }

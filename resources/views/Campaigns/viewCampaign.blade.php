@@ -54,10 +54,45 @@
                         <!-- end page title -->
 
 
+                        <div class="row">
+
+                            <div class="col-md-3">
+                                <div class="card mini-stats-wid card bg-success text-white-50" >
+                                    <div class="card-body">
+                                        <div class="media">
+                                            <div class="media-body">
+                                                <p class="" style="color:white">Total Campaign Budget $USD</p>
+                                                <h4 class="mb-0" style="color:white">{{ $campaignBudgetUSD }}</h4>
+                                            </div>
+
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="card mini-stats-wid card bg-info text-white-50" >
+                                    <div class="card-body">
+                                        <div class="media">
+                                            <div class="media-body">
+                                                <p class="" style="color:white">Total Utilized $USD</p>
+                                                <h4 class="mb-0" style="color:white">{{ $campaignUSD }}</h4>
+                                            </div>
+
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                          
+                            
+                        </div><!-- end of div row -->
 
 
                         <div class="row">
-                            <div class="col-lg-8">
+                            <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="media">
@@ -126,32 +161,9 @@
                             </div>
                             <!-- end col -->
 
-                            <div class="col-lg-4">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="card mini-stats-wid card bg-info text-white-50" >
-                                            <div class="card-body">
-                                                <div class="media">
-                                                    <div class="media-body">
-                                                        <p class="" style="color:white">Total Campaign Budget $USD</p>
-                                                        <h4 class="mb-0" style="color:white">{{ $campaignUSD }}</h4>
-                                                    </div>
+                        
 
-                                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
-                                                        <span class="avatar-title">
-                                                            <i class="bx bx-dollar-circle  font-size-24"></i>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                               
-
-                            </div>
-                            <!-- end col -->
+                            
                         </div>
 
 
@@ -170,12 +182,22 @@
                                                     <span class="d-none d-sm-block">Campaign Activities</span>    
                                                 </a>
                                             </li>
+
                                             <li class="nav-item">
                                                 <a class="nav-link" data-bs-toggle="tab" href="#details" role="tab" aria-selected="true">
                                                     <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
                                                     <span class="d-none d-sm-block">Campaign Details</span>    
                                                 </a>
                                             </li>
+
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-bs-toggle="tab" href="#ro_details" role="tab" aria-selected="true">
+                                                    <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
+                                                    <span class="d-none d-sm-block">RO Details</span>    
+                                                </a>
+                                            </li>
+
+                                          
                                             
                                            
                                             
@@ -250,12 +272,100 @@
                                                         <div id="editCampaign"></div>
 
                                                      
-                                                            </div>
-                                                        </div>
+                                                            
+                                                        
                                                     </div>
                                                 </div>
                                                 
+                                            </div><!-- end of div campaign details tab -->
+
+
+
+                                            <div class="tab-pane" id="ro_details" role="tabpanel">
+                                                <div class="row align-items-center">
+                                                    <div class="col-md-12">
+                                                        <form class="row gy-2 gx-3 align-items-center" method="post" action="/campaign/add-ro">
+                                                            @csrf
+                                                            <input type="hidden" value="{{ $campaign->campaign_id }}" name="campaign_id" />
+                                                            <div class="col-md-2">
+                                                                <label class="visually-hidden">RO Number</label>
+                                                                <input type="text" class="form-control" name="ronumber" placeholder="RO Number">
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <label class="visually-hidden">RO USD Value</label>
+                                                                <input type="text" class="form-control" name="usdvalue" placeholder="RO USD Value">
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <label class="visually-hidden">RO LKR Value</label>
+                                                                <input type="text" class="form-control" name="lkrvalue" placeholder="RO LKR Value">
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <label class="visually-hidden">Platform</label>
+                                                                <select class="form-select" name="platform">
+                                                                    <option value="none">Select Platform</option>
+                                                                    <option value="Facebook">Facebook</option>
+                                                                    <option value="Facebook & Instagram">Facebook & Instagram</option>
+                                                                    <option  value="Instagram">Instagram</option>
+                                                                    <option  value="Youtube">Youtube</option>
+                                                                    <option value="Google">Google</option>
+                                                                    <option value="Xaxis">Xaxis</option>
+                                                                    <option value="Twitter">Twitter</option>
+                                                                    <option value="Linkedin">Linkedin</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <button type="submit" class="btn btn-success w-md">Submit</button>
+                                                            </div>
+                                                        </form>
+
+                                                    </div><!-- end of div column -->
+                                                </div>  <!-- end of div row -->
+
+                                                <div class="row mt-4">
+                                                        <div class="col-md-12">
+
+                                                            <div class="table-responsive">
+                                                                <table class="table table-striped mb-0">
+                            
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>RO#</th>
+                                                                            <th>Platform</th>
+                                                                            <th>USD Value</th>
+                                                                            <th>LKR Value</th>                                                                    
+                                                                            <th>Actions</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @foreach($ro as $ro)
+                                                                            <tr>
+                                                                                <td>{{ $ro->ro_number }}</td>
+                                                                                <td>{{ $ro->platform }}</td>
+                                                                                <td>{{ $ro->usd_value }}</td>
+                                                                                <td>{{ $ro->lkr_value }}</td>                                                                                
+                                                                                <td>{{ $ro->endDate }}</td>                                        
+                                                                            </tr>
+        
+                                                                        @endforeach
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            
+                                                        </div><!-- end of div column -->
+                                                </div><!-- end of div row -->
+                                                
+                                                
+
+
+
+
                                             </div>
+
+
+
+                                           
+
+
                                             
                                         </div>
 
