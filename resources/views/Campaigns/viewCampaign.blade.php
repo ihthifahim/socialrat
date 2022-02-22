@@ -343,7 +343,8 @@
                                                                                 <td>{{ $ro->platform }}</td>
                                                                                 <td>{{ $ro->usd_value }}</td>
                                                                                 <td>{{ $ro->lkr_value }}</td>                                                                                
-                                                                                <td>{{ $ro->endDate }}</td>                                        
+                                                                                <td>{{ $ro->endDate }}</td>  
+                                                                                <td><a href="/ro-delete/{{ $ro->ro_id }}">delete</a></td>                                        
                                                                             </tr>
         
                                                                         @endforeach

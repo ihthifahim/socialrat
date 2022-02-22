@@ -64,6 +64,9 @@ route::post('/new-activity', [CampaignsController::class, 'newActivityPost']);
 
 route::post('/delete-activity', [CampaignsController::class, 'deleteActivity']);
 route::post('/campaign/add-ro', [CampaignsController::class, 'addROPost']);
+
+route::get('/ro-delete/{id}', [CampaignsController::class, 'deleteRO']);
+
 route::get('/delete-comment/{id}', [CampaignsController::class, 'deleteComment']);
 
 

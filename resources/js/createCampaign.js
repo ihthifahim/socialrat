@@ -46,13 +46,15 @@ function NewCampaignForm(){
         setIsPending(true);
         e.preventDefault();
         const newCampaign = [client, brand, campaignName, clientApproval, startDate, endDate, notes];
+        console.log(newCampaign);
         axios.post("/api/new-campaign", {
             client: client,
             brand: brand,
             campaignName: campaignName,
             clientApproval: clientApproval,
             startDate: startDate,
-            endDate: notes,
+            endDate: endDate,
+            notes: notes
 
         }).then((response) => {
             console.log(response.data);

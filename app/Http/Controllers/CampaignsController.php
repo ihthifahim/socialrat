@@ -29,6 +29,7 @@ class CampaignsController extends Controller
     }
 
     public function createCampaign(){
+        
         return view('Campaigns.newcampaign');
     }
 
@@ -42,8 +43,13 @@ class CampaignsController extends Controller
         $campaign->startDate = $request->startDate;
         $campaign->endDate = $request->endDate;
         $campaign->notes = $request->notes;
+        $campaign->userCreated = session()->get('user_firstName');
+        $campaign->user_id = session()->get('user_id');
         $campaign->save();
+
         return response()->json("successfull");
+        
+        
         
     }
 
@@ -223,5 +229,12 @@ class CampaignsController extends Controller
         $ro->save();
 
         return redirect('/campaign/'.$request->campaign_id);
+    }
+
+    public function deleteRO($id){
+        $campaignId = CampaignRO::where('ro_id', '=', $id)->first();
+        CampaignRO::where('ro_id', '=', $id)->delete();
+        
+        return redirect('/campaign/'.$campaignId->campaign_id);
     }
 }
