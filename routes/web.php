@@ -82,5 +82,22 @@ route::post('/create-user', [AuthController::class, 'createUser']);
 route::post('/update-user', [AuthController::class, 'updateUser']);
 
 
+
+
+
+
+route::get('/campaigns/api/', [CampaignsController::class, 'allCampaignsAPI']);
+route::get('/clients/api', [ClientsController::class, 'allClientsAPI']);
+route::get('/clients/{clientName}/api', [ClientsController::class, 'clientBrandsAPI']);
+
+route::post('/new-campaign/api', [CampaignsController::class, 'newCampaignAPI']);
+route::post('/campaign/edit', [CampaignsController::class, 'editCampaignAPI']);
+
+route::get('/campaign/{id}', [CampaignsController::class, 'viewCampaignAPI']);
+route::get('/clients/{name}', [CampaignsController::class, 'viewSelectedClientAPI']);
+
+route::get('/campaign/search/{searchKeyword}', [CampaignsController::class, 'searchCampaignAPI']);
+
+
 });
 

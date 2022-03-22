@@ -2214,7 +2214,7 @@ function AllCampaignsTable() {
       setIsPending = _useState4[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/campaigns").then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default().get("/campaigns/api").then(function (response) {
       setAllCampaigns(response.data);
       setIsPending(false);
     });
@@ -2230,10 +2230,6 @@ function AllCampaignsTable() {
             className: "card-body",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("table", {
               className: "table table-striped mb-0",
-              style: {
-                overflowX: 'scroll',
-                width: '100%'
-              },
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("thead", {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
@@ -2442,7 +2438,7 @@ function NewCampaignForm() {
       setNotes = _useState20[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/clients").then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default().get("/clients/api/").then(function (response) {
       setClientDetails(response.data);
     });
   }, []);
@@ -2453,7 +2449,7 @@ function NewCampaignForm() {
     if (clientName == "none") {
       setSelectedClient([]);
     } else {
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/clients/".concat(clientName)).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get("/clients/".concat(clientName, "/api/")).then(function (response) {
         setSelectedClient(response.data);
         setClient(clientName);
       });
@@ -2464,7 +2460,7 @@ function NewCampaignForm() {
     setIsPending(true);
     e.preventDefault();
     var newCampaign = [client, brand, campaignName, clientApproval, startDate, endDate, notes];
-    axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/new-campaign", {
+    axios__WEBPACK_IMPORTED_MODULE_0___default().post("/new-campaign/api/", {
       client: client,
       brand: brand,
       campaignName: campaignName,
@@ -2473,8 +2469,6 @@ function NewCampaignForm() {
       endDate: endDate,
       notes: notes
     }).then(function (response) {
-      console.log(response.data);
-
       if (response.data == "successfull") {
         window.location.href = "/campaigns";
       }

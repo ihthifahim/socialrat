@@ -34,9 +34,20 @@ class CampaignsController extends Controller
     }
 
     public function newCampaignAPI(Request $request){
+
         
-        $userID = session()->get('user_id');
-        return response()->json($userID);        
+        $campaign = New Campaigns;
+        $campaign->campaign_name = $request->campaignName;
+        $campaign->client = $request->client;
+        $campaign->brandName = $request->brand;
+        $campaign->clientApproval = $request->clientApproval;
+        $campaign->startDate = $request->startDate;
+        $campaign->endDate = $request->endDate;
+        $campaign->notes = $request->notes;
+        $campaign->userCreated = session()->get('user_firstName');
+        $campaign->user_id = session()->get('user_id');
+        $campaign->save();
+        return response()->json("successfull");
         
     }
 

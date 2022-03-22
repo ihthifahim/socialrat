@@ -19,7 +19,7 @@ function NewCampaignForm(){
     const [notes, setNotes] = useState("");
 
     useEffect(() => {
-        axios.get("/api/clients").then((response) => {
+        axios.get("/clients/api/").then((response) => {
             setClientDetails(response.data);
         })
     }, []);
@@ -30,7 +30,7 @@ function NewCampaignForm(){
         if(clientName == "none"){
             setSelectedClient([]);
         } else {
-            axios.get(`/api/clients/${clientName}`).then((response) => {
+            axios.get(`/clients/${clientName}/api/`).then((response) => {
                 setSelectedClient(response.data);
                 setClient(clientName);   
                 
@@ -46,8 +46,7 @@ function NewCampaignForm(){
         setIsPending(true);
         e.preventDefault();
         const newCampaign = [client, brand, campaignName, clientApproval, startDate, endDate, notes];
-        
-        axios.post("/api/new-campaign", {
+        axios.post("/new-campaign/api/", {
             client: client,
             brand: brand,
             campaignName: campaignName,
@@ -57,7 +56,6 @@ function NewCampaignForm(){
             notes: notes
 
         }).then((response) => {
-            console.log(response.data);
             if(response.data == "successfull"){
                window.location.href = "/campaigns";
             }
