@@ -35,21 +35,8 @@ class CampaignsController extends Controller
 
     public function newCampaignAPI(Request $request){
         
-        $campaign = New Campaigns;
-        $campaign->campaign_name = $request->campaignName;
-        $campaign->client = $request->client;
-        $campaign->brandName = $request->brand;
-        $campaign->clientApproval = $request->clientApproval;
-        $campaign->startDate = $request->startDate;
-        $campaign->endDate = $request->endDate;
-        $campaign->notes = $request->notes;
-        $campaign->userCreated = session()->get('user_firstName');
-        $campaign->user_id = session()->get('user_id');
-        $campaign->save();
-
-        return response()->json("successfull");
-        
-        
+        $userID = session()->get('user_id');
+        return response()->json($userID);        
         
     }
 
@@ -71,6 +58,12 @@ class CampaignsController extends Controller
             'activity' => $activities,
             'ro' => $ro
         ]);
+    }
+
+    public function searchCampaignAPI($searchKeyword){
+        $campaign = Campaigns::where('campaign_name', '=', $searchKeyword)->get();
+        return response()->json($campaign);
+        
     }
 
     public function viewCampaignAPI($id){
@@ -137,8 +130,8 @@ class CampaignsController extends Controller
             'platform' => $request->platform,
             'budgetLKR' => $request->lkr,
             'budgetUSD' => $request->usd,
-            'startDate' => $request->startDate,
-            'endDate' => $request->endDate,
+            'activity_start' => $request->startDate,
+            'activity_end' => $request->endDate,
             'primaryKPI' => $request->primaryKPI,
             'secondaryKPI' => $request->secondaryKPI,
             'creativeLink' => $request->link,
@@ -180,8 +173,8 @@ class CampaignsController extends Controller
         $act->budgetUSD = $request->usd;
         $act->primaryKPI = $request->primaryKPI;
         $act->secondaryKPI = $request->secondaryKPI;
-        $act->startDate = $request->startDate;
-        $act->endDate = $request->endDate;
+        $act->activity_start = $request->startDate;
+        $act->activity_end = $request->endDate;
         $act->status = "Pending";
         $act->comments = $request->notes;
         $act->creativeLink = $request->link;

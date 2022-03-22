@@ -30,6 +30,10 @@ function AllCampaignsTable(){
 
     }, []);
 
+    // searchCampaign = () => {
+    //     axios.get()
+    // }
+
     
     return(
         <>
@@ -38,6 +42,7 @@ function AllCampaignsTable(){
                                 <div className="col-12">
                                     <div className="card">
                                             <div className="card-body">
+                                                <input id="search" oninput={searchCampaign} />
                                                 <table className="table table-striped mb-0" style={{overflowX : 'scroll', width: '100%'}}>
         
                                                     <thead>

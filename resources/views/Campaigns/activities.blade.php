@@ -6,6 +6,14 @@
 
             
 
+<?php 
+$activity_edit = "";
+if($activity->status != "Pending" && session()->get('user_role') == 2){
+    $activity_edit = "disabled";
+}
+
+
+?>
         
 
                 <div class="page-content">
@@ -35,7 +43,7 @@
                                             <input type="hidden" name="campaignid" value="{{ $activity->campaign_id }}" />
                                             <div class="mb-3">
                                                     <label htmlFor="formrow-email-input" class="form-label">Activity Name</label>
-                                                    <input type="text" class="form-control" name="activityName" value="{{ $activity->activityName }}"/>
+                                                    <input type="text" class="form-control" name="activityName" value="{{ $activity->activityName }}" <?php echo $activity_edit ?>/>
                                             </div>
 
 
@@ -43,16 +51,17 @@
                                                 <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">RO Number</label>
-                                                    <input type="text" class="form-control" name="ro" value="{{ $activity->ro_number }}"/>
+                                                    <input type="text" class="form-control" name="ro" value="{{ $activity->ro_number }}" <?php echo $activity_edit ?>/>
                                                 </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label class="form-label" >Platform</label>
-                                                    <select name="platform" class="form-select">
+                                                    <select name="platform" class="form-select" <?php echo $activity_edit ?>>
                                                     <option value="none" {{ $activity->platform == "none" ? 'selected' : '' }}>Choose...</option>
                                                     <option value="Facebook" {{ $activity->platform == "Facebook" ? 'selected' : '' }}>Facebook</option>
                                                     <option  value="Instagram" {{ $activity->platform == "Instagram" ? 'selected' : '' }}>Instagram</option>
+                                                    <option  value="Facebook & Instagram" {{ $activity->platform == "Facebook & Instagram" ? 'selected' : '' }}>Instagram</option>
                                                     <option  value="Youtube" {{ $activity->platform == "Youtube" ? 'selected' : '' }}>Youtube</option>
                                                     <option value="Google" {{ $activity->platform == "Google" ? 'selected' : '' }}>Google</option>
                                                     <option value="Twitter" {{ $activity->platform == "Twitter" ? 'selected' : '' }}>Twitter</option>
@@ -67,13 +76,13 @@
                                                 <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Budget LKR (with Commission)</label>
-                                                    <input type="text" class="form-control" name="lkr" value="{{ $activity->budgetLKR }}"/>
+                                                    <input type="text" class="form-control" name="lkr" value="{{ $activity->budgetLKR }}" <?php echo $activity_edit ?> />
                                                 </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Budget USD (without Commission)</label>
-                                                    <input type="text" class="form-control" name="usd" value="{{ $activity->budgetUSD }}" />
+                                                    <input type="text" class="form-control" name="usd" value="{{ $activity->budgetUSD }}" <?php echo $activity_edit ?> />
                                                 </div>
                                                 </div>
                                             </div>
@@ -84,13 +93,13 @@
                                                 <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label htmlFor="formrow-email-input" class="form-label">Start Date</label>
-                                                    <input class="form-control" type="date" name="startDate" value="{{ $activity->startDate }}"/>
+                                                    <input class="form-control" type="date" name="startDate" value="{{ $activity->startDate }}" <?php echo $activity_edit ?> />
                                                 </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label htmlFor="formrow-password-input" class="form-label">End Date</label>
-                                                    <input class="form-control" type="date" name="endDate" value="{{ $activity->endDate }}" />
+                                                    <input class="form-control" type="date" name="endDate" value="{{ $activity->endDate }}" <?php echo $activity_edit ?> />
                                                 </div>
                                                 </div>
                                             </div>
@@ -99,13 +108,13 @@
                                                 <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Primary KPI</label>
-                                                    <input type="text" class="form-control" name="primaryKPI" value="{{ $activity->primaryKPI }}" />
+                                                    <input type="text" class="form-control" name="primaryKPI" value="{{ $activity->primaryKPI }}" <?php echo $activity_edit ?> />
                                                 </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Secondary KPI</label>
-                                                    <input type="text" class="form-control" name="secondaryKPI" value="{{ $activity->secondaryKPI }}" />
+                                                    <input type="text" class="form-control" name="secondaryKPI" value="{{ $activity->secondaryKPI }}" <?php echo $activity_edit ?> />
                                                 </div>
                                                 </div>
                                             </div>
@@ -113,19 +122,24 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                 <div class="mb-3">
-                                                    <label class="form-label">Creative Link</label>
-                                                    <input type="text" class="form-control" name="link" value="{{ $activity->creativeLink }}" />
+                                                    @if($activity->creativeLink == "")
+                                                        <label class="form-label">Creative Link</label>
+                                                    @else
+                                                       <label class="form-label">Creative Link</label><a target="_blank" href="{{ $activity->creativeLink }}"> view link</a>
+                                                    @endif
+                                                    <input type="text" class="form-control" name="link" value="{{ $activity->creativeLink }}" <?php echo $activity_edit ?> />
                                                 </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label class="form-label">Status</label>
-                                                    <select name="status" class="form-select">
+                                                    <select name="status" class="form-select" <?php echo $activity_edit ?> >
                                                     
                                                     <option value="In-review" {{ $activity->status == "In-review" ? 'selected' : '' }}>In-Review</option>
                                                     <option value="Pending" {{ $activity->status == "Pending" ? 'selected' : '' }}>Pending</option>
                                                     <option value="Learning" {{ $activity->status == "Learning" ? 'selected' : '' }}>Learning</option>
                                                     <option value="Completed" {{ $activity->status == "Completed" ? 'selected' : '' }}>Completed</option>
+                                                    <option value="Rejected" {{ $activity->status == "Rejected" ? 'selected' : '' }}>Rejected</option>
 
                                                     
                                                     </select>
@@ -137,7 +151,7 @@
 
 
                                             <div class="mb-3">
-                                                    <label class="form-label" name="notes">Activity Notes</label>
+                                                    <label class="form-label" name="notes" <?php echo $activity_edit ?> >Activity Notes</label>
                                                     <textarea class="form-control" rows="7" name="notes" >{{ $activity->comments }}</textarea>
                                             </div>
 

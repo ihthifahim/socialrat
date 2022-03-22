@@ -242,6 +242,8 @@
                                                                                 <span class="badge rounded-pill badge-soft-danger font-size-11">Pending</span>
                                                                             @elseif($act->status == "Learning")
                                                                             <span class="badge rounded-pill badge-soft-primary font-size-11">Learning</span>
+                                                                            @elseif($act->status == "Rejected")
+                                                                            <span class="badge rounded-pill badge-soft-dark font-size-11">Rejected</span>
                                                                             @else
                                                                             <span class="badge rounded-pill badge-soft-success font-size-11">Completed</span>
                                                                             @endif

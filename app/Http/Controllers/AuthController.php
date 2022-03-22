@@ -21,7 +21,6 @@ class AuthController extends Controller
         
         $user = Users::where([
             'username' => $username,
-            
         ])->first();
 
         

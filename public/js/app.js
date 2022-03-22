@@ -2464,7 +2464,6 @@ function NewCampaignForm() {
     setIsPending(true);
     e.preventDefault();
     var newCampaign = [client, brand, campaignName, clientApproval, startDate, endDate, notes];
-    console.log(newCampaign);
     axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/new-campaign", {
       client: client,
       brand: brand,
