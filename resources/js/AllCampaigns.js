@@ -68,7 +68,7 @@ function AllCampaignsTable(){
                                                         
                                                         {allCampaigns.map((value,key) => {
                                                             return(
-                                                                <tr>
+                                                                <tr key={key}>
                                                                     <td>{value.campaign_name}</td>
                                                                     <td>{value.brandName}</td>
                                                                     <td>{value.startDate}</td>

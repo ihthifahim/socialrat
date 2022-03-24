@@ -72,6 +72,17 @@
                                                                 @else
                                                                 <span class="badge rounded-pill badge-soft-success font-size-11">Completed</span>
                                                                 @endif
+
+                                                                @if($act->peer_review == "" || $act->peer_review == "Pending") 
+                                                                <span class="badge rounded-pill badge-soft-danger font-size-10">Pending Review</span>
+                                                                @elseif($act->peer_review == "Need Changes")
+                                                                <span class="badge rounded-pill badge-soft-warning font-size-11">Need Changes</span>
+                                                                @elseif($act->peer_review == "Select")
+                                                                
+                                                                @else
+                                                                <span class="badge rounded-pill badge-soft-success font-size-11">Completed</span>
+                                                                @endif
+
                                                             </td>
                                                             <td><a href="/campaign/{{ $act->campaign_id }}/{{ $act->activity_id }}"><span class="bx bx-edit "></span></a></td>
                                                            

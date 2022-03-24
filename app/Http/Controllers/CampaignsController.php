@@ -34,8 +34,6 @@ class CampaignsController extends Controller
     }
 
     public function newCampaignAPI(Request $request){
-
-        
         $campaign = New Campaigns;
         $campaign->campaign_name = $request->campaignName;
         $campaign->client = $request->client;
@@ -189,6 +187,7 @@ class CampaignsController extends Controller
         $act->status = "Pending";
         $act->comments = $request->notes;
         $act->creativeLink = $request->link;
+        $act->peer_review = "Pending";
         $act->campaign_id = $request->campaignid;
         $act->save();
 

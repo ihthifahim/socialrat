@@ -2305,7 +2305,7 @@ function AllCampaignsTable() {
                         })
                       })
                     })]
-                  });
+                  }, key);
                 })]
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {})]
@@ -2770,7 +2770,7 @@ function EditCampaignForm() {
 
 
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/campaign/".concat(campaignid)).then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default().get("/campaign/".concat(campaignid, "/api/")).then(function (response) {
       setCampaignDetails(response.data);
       setClient(response.data.client);
       setCampaignName(response.data.campaign_name);
@@ -2780,12 +2780,12 @@ function EditCampaignForm() {
       setEndDate(response.data.endDate);
       setNotes(response.data.notes);
     });
-    axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/clients").then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default().get("/clients/api/").then(function (response) {
       setClientDetails(response.data);
     });
   }, []);
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/clients/".concat(campaignDetails.client)).then(function (response) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default().get("/clients/".concat(campaignDetails.client, "/api/")).then(function (response) {
       setSelectedCLient(response.data);
     });
   }, [campaignDetails]);
@@ -2796,7 +2796,7 @@ function EditCampaignForm() {
     if (clientName == "none") {
       setSelectedCLient([]);
     } else {
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/clients/".concat(clientName)).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get("/clients/".concat(clientName, "/api")).then(function (response) {
         setSelectedCLient(response.data);
         setClient(clientName);
       });
@@ -2806,7 +2806,7 @@ function EditCampaignForm() {
   var handleSubmit = function handleSubmit(e) {
     setIsPending(true);
     e.preventDefault();
-    axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/campaign/edit", {
+    axios__WEBPACK_IMPORTED_MODULE_0___default().post("/campaign/edit/api", {
       campaignId: campaignid,
       campaignName: campaignName,
       client: client,

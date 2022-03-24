@@ -38,8 +38,7 @@ function EditCampaignForm(){
 
 
     useEffect(() => {
-        axios.get(`/api/campaign/${campaignid}`).then((response) => {
-            
+        axios.get(`/campaign/${campaignid}/api/`).then((response) => {
             setCampaignDetails(response.data);
             setClient(response.data.client);
             setCampaignName(response.data.campaign_name);
@@ -48,11 +47,9 @@ function EditCampaignForm(){
             setStartDate(response.data.startDate);
             setEndDate(response.data.endDate);
             setNotes(response.data.notes);
-            
-            
         });
 
-        axios.get("/api/clients").then((response) => {
+        axios.get("/clients/api/").then((response) => {
             setClientDetails(response.data);
         });
 
@@ -64,7 +61,7 @@ function EditCampaignForm(){
 
 
     useEffect(() => {
-        axios.get(`/api/clients/${campaignDetails.client}`).then((response) => {
+        axios.get(`/clients/${campaignDetails.client}/api/`).then((response) => {
             setSelectedCLient(response.data);
             
         });
@@ -80,7 +77,7 @@ function EditCampaignForm(){
     if(clientName == "none"){
         setSelectedCLient([]);
     } else {
-        axios.get(`/api/clients/${clientName}`).then((response) => {
+        axios.get(`/clients/${clientName}/api`).then((response) => {
             setSelectedCLient(response.data);
             setClient(clientName);
         });
@@ -93,7 +90,7 @@ function EditCampaignForm(){
    const handleSubmit = (e) => {
     setIsPending(true);
      e.preventDefault();
-     axios.post("/api/campaign/edit", { campaignId: campaignid, campaignName: campaignName, client: client, brandName: brand, clientApproval: clientApproval, startDate: startDate, endDate: endDate, notes: notes}).then((response) => {
+     axios.post("/campaign/edit/api", { campaignId: campaignid, campaignName: campaignName, client: client, brandName: brand, clientApproval: clientApproval, startDate: startDate, endDate: endDate, notes: notes}).then((response) => {
          console.log(response.data);
          
          window.location.reload();

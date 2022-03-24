@@ -91,12 +91,12 @@ route::get('/clients/api', [ClientsController::class, 'allClientsAPI']);
 route::get('/clients/{clientName}/api', [ClientsController::class, 'clientBrandsAPI']);
 
 route::post('/new-campaign/api', [CampaignsController::class, 'newCampaignAPI']);
-route::post('/campaign/edit', [CampaignsController::class, 'editCampaignAPI']);
+route::post('/campaign/edit/api', [CampaignsController::class, 'editCampaignAPI']);
 
-route::get('/campaign/{id}', [CampaignsController::class, 'viewCampaignAPI']);
-route::get('/clients/{name}', [CampaignsController::class, 'viewSelectedClientAPI']);
+route::get('/campaign/{id}/api', [CampaignsController::class, 'viewCampaignAPI']);
+route::get('/clients/{name}/api', [CampaignsController::class, 'viewSelectedClientAPI']);
 
-route::get('/campaign/search/{searchKeyword}', [CampaignsController::class, 'searchCampaignAPI']);
+// route::get('/campaign/search/{searchKeyword}', [CampaignsController::class, 'searchCampaignAPI']);
 
 
 });

@@ -93,13 +93,13 @@ if($activity->status != "Pending" && session()->get('user_role') == 2){
                                                 <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label htmlFor="formrow-email-input" class="form-label">Start Date</label>
-                                                    <input class="form-control" type="date" name="startDate" value="{{ $activity->startDate }}" <?php echo $activity_edit ?> />
+                                                    <input class="form-control" type="date" name="startDate" value="{{ $activity->activity_start }}" <?php echo $activity_edit ?> />
                                                 </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                 <div class="mb-3">
                                                     <label htmlFor="formrow-password-input" class="form-label">End Date</label>
-                                                    <input class="form-control" type="date" name="endDate" value="{{ $activity->endDate }}" <?php echo $activity_edit ?> />
+                                                    <input class="form-control" type="date" name="endDate" value="{{ $activity->activity_end }}" <?php echo $activity_edit ?> />
                                                 </div>
                                                 </div>
                                             </div>
